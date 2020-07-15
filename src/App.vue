@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss">
 @import "@/scss/form-style.scss";
+@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@500&display=swap');
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
