@@ -12,6 +12,19 @@
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
+      <div class="recipe-info">
+        <!-- VEGAN -->
+        <font-awesome-icon v-if="recipe.vegetarian || true" icon="leaf" size="2x" class="info green"/>
+        <!-- VEGETATRIAN -->
+        <font-awesome-icon v-else-if="recipe.vegan || true" icon="seedling" size="2x" class="info green"/>
+        <!-- GLUTEN FREE -->
+        <font-awesome-icon v-if="recipe.glutenFree || true" icon="ribbon" size="2x" class="info red"/>
+        <!-- VISITED -->
+        <font-awesome-icon v-if="recipe.visited || true" icon="eye" size="2x" class="info blue"/>
+        <!-- FAVORITE -->
+        <font-awesome-icon v-if="!recipe.favorite || true" :icon="['far', 'star']" size="2x" class="info green"/>
+        <font-awesome-icon v-else-if="recipe.favorite || true" :icon="['fas', 'star']" size="2x" class="info green"/>
+      </div>
       <ul class="recipe-overview">
         <li>
           <font-awesome-icon id="prepDuration" :icon="['far', 'clock']" size="lg"/>
@@ -22,19 +35,6 @@
           {{ recipe.aggregateLikes }} likes
         </li>
       </ul>
-      <div class="recipe-info">
-        <!-- VEGAN -->
-        <font-awesome-icon v-if="recipe.vegetarian" icon="leaf" size="2x"/>
-        <!-- VEGETATRIAN -->
-        <font-awesome-icon v-else-if="recipe.vegan" icon="seedling" size="2x"/>
-        <!-- GLUTEN FREE -->
-        <font-awesome-icon v-if="recipe.glutenFree" icon="ribbon" size="2x"/>
-        <!-- VISITED -->
-        <font-awesome-icon v-if="recipe.visited" icon="eye" size="2x"/>
-        <!-- FAVORITE -->
-        <font-awesome-icon v-if="!recipe.favorite" :icon="['far', 'star']" size="2x"/>
-        <font-awesome-icon v-else-if="recipe.favorite" :icon="['fas', 'star']" size="2x"/>
-      </div>
     </div>
   </router-link>
 </template>
@@ -115,7 +115,7 @@ export default {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  color: black;
+  color: #2c3e50;
   margin-bottom: 1%;
 }
 
@@ -149,25 +149,44 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
-  color: black;
+  color: #2c3e50;
 }
 
 .recipe-info{
   text-align: center;
-  margin-top: 5%;
-  margin-bottom: -3%;
+  margin-top: 3%;
+  margin-bottom: 5%;
   padding-left: 5%;
   padding-right: 5%;
   font-size: 80%;
-  color: black;
+  color: #2c3e50;
 }
 
 a:hover { 
   text-decoration: none; 
 }
+
 #likes,
 #prepDuration{
   margin-right: 5px;
   margin-left: 5px;
+  margin-top: 5px;
+}
+
+.green {
+  color: rgba(39, 129, 39, 0.801);
+}
+
+.red {
+  color: rgba(129, 39, 39, 0.801);
+}
+
+.blue {
+  color: rgba(39, 67, 129, 0.801);
+}
+
+.info {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
