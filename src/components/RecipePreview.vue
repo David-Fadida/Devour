@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'aboute' }"
     class="recipe-preview"
     @mouseover="hover = true"
     @mouseleave="hover = false"
@@ -57,7 +57,8 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  
 };
 </script>
 
@@ -75,7 +76,6 @@ export default {
   cursor: pointer;
   border: rgb(122, 122, 122) solid 1px;
 }
-
 .recipe-preview:hover {
   transition-duration: 0.5s;
   transform: scale(1.05);
@@ -85,7 +85,6 @@ export default {
   height: 200px;
   position: relative;
 }
-
 .recipe-preview .recipe-body .recipe-image {
   margin-left: auto;
   margin-right: auto;
@@ -99,13 +98,11 @@ export default {
   background-size: cover; 
   
 }
-
 .recipe-preview .recipe-footer {
   width: 100%;
   height: 50%;
   overflow: hidden;
 }
-
 .recipe-preview .recipe-footer .recipe-title {
   padding: 10px 10px;
   width: 100%;
@@ -118,7 +115,6 @@ export default {
   color: #2c3e50;
   margin-bottom: 1%;
 }
-
 .recipe-preview .recipe-footer ul.recipe-overview {
   padding: 5px 10px;
   width: 100%;
@@ -137,7 +133,6 @@ export default {
   table-layout: fixed;
   margin-bottom: 0px;
 }
-
 .recipe-preview .recipe-footer ul.recipe-overview li {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;

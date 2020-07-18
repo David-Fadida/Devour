@@ -48,9 +48,9 @@ export default {
       let response;
       try {
         response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/info",
+          "http://localhost:3000/recipes/Information",
           {
-            params: { id: this.$route.params.recipeId }
+            params: { recipe_id: this.$route.params.recipeId }
           }
         );
         if (response.status !== 200) this.$router.replace("/NotFound");
@@ -68,7 +68,7 @@ export default {
         readyInMinutes,
         image,
         title
-      } = response.data.recipe;
+      } = response.data.data;
 
       let _instructions = analyzedInstructions
         .map((fstep) => {

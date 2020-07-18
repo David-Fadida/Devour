@@ -48,6 +48,7 @@ library.add(fas);
 library.add(far);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
+
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
@@ -85,10 +86,28 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("lastSearchByUser");
+    localStorage.removeItem("lastSearchFormByUser");
     this.username = undefined;
   },
+  lastSearchByUser: localStorage.lastSearchByUser,
+  saveLastSearchByUser(lastSearchByUser){
+    this.lastSearchByUser= lastSearchByUser;
+    localStorage.setItem("lastSearchByUser",JSON.stringify(this.lastSearchByUser));
+  },
+  lastSearchFormByUser: localStorage.lastSearchFormByUser,
+  saveLastSearchFormByUser(lastSearchFormByUser){
+    let form = new Object();
+    form.query = lastSearchFormByUser.query;
+    form.diet = lastSearchFormByUser.diet;
+    form.cusine = lastSearchFormByUser.cusine;
+    form.intolorence = lastSearchFormByUser.intolorence;
+    form.amount = lastSearchFormByUser.amount;
+    this.lastSearchFormByUser = form;
+    localStorage.setItem("lastSearchFormByUser",JSON.stringify(this.lastSearchFormByUser))
+  }
 };
-console.log(shared_data);
+
 // Vue.prototype.$root.store = shared_data;
 
 new Vue({

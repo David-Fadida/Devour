@@ -210,7 +210,6 @@ import {
   sameAs,
   email
 } from "vuelidate/lib/validators";
-
 export default {
   name: "Register",
   data() {
@@ -238,39 +237,40 @@ export default {
         required,
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
-	  },
-	  firstName: {
-		required,  
-		alpha
-	  },
-	  lastName: {
-		required,  
-		alpha
-	  },
+	    },
+	    firstName: {
+		  required,  
+		  alpha
+	    },
+	    lastName: {
+		  required,  
+		  alpha
+	    },
       country: {
         required
       },
       password: {
         required,
-		length: (p) => minLength(5)(p) && maxLength(10)(p),
-		mustBeStrong: (p) => {
+		  length: (p) => minLength(5)(p) && maxLength(10)(p),
+		  mustBeStrong: (p) => {
 			var hasNumber = new RegExp('(?=.*[0-9])');
 			var hasSpecialChar = new RegExp('(?=.*[!@#$%^&*])');
 			if( hasNumber.test(p) && hasSpecialChar.test(p)) return true;
 			return false;
-		}
+		  }
       },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
-	  },
-	  email: {
-		required,
-		email
-	  },
-	  profileImage: {
-		url
-	  }
+	    },
+	    email: {
+		  required,
+		  email
+	    },
+	    profileImage: {
+      url,
+      required
+	    }
     }
   },
   mounted() {
@@ -283,11 +283,17 @@ export default {
     },
     async Register() {
       try {
+        console.log(this.form.firstName)
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://localhost:3000/Register",
           {
             username: this.form.username,
-            password: this.form.password
+            firstName: this.form.firstName,
+            lastName: this.form.lastName,
+            country: this.form.country,
+            password: this.form.password,
+            email: this.form.email,
+            image: this.form.profileImage
           }
         );
         this.$router.push("/login");
