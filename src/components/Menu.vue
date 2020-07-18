@@ -11,6 +11,11 @@
         <font-awesome-icon icon="user-friends" size="sm"/> About 
       </router-link>
       <!-- PRIVATE -->
+      <b-dropdown text="Primary" variant="primary" class="m-2" id="personal">
+        <b-dropdown-item href="#">Action</b-dropdown-item>
+        <b-dropdown-item href="#">Another action</b-dropdown-item>
+        <b-dropdown-item href="#">Something else here</b-dropdown-item>
+      </b-dropdown>
     </div>
     
     <!-- USER SECTION -->
@@ -150,5 +155,9 @@ export default {
 
 .hello{
   padding-right: 25px;
+}
+
+.dropdown-menu .show{
+  overflow: visible;
 }
 </style>

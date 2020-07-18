@@ -48,6 +48,7 @@ library.add(fas);
 library.add(far);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
+
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
