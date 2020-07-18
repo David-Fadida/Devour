@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>
-      {{ title }}:
+      {{ title }}
       <slot></slot>
     </h3>
     <b-row>
@@ -39,12 +39,9 @@ export default {
         const response = await this.axios.get(
           "https://test-for-3-2.herokuapp.com/recipes/random"
         );
-
-        // console.log(response);
         const recipes = response.data.recipes;
         this.recipes = [];
         this.recipes.push(...recipes);
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -56,5 +53,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+  font-family: 'Palanquin Dark';
+  text-align: center;
 }
 </style>

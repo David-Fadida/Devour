@@ -32,11 +32,6 @@
           </div>
         </div>
       </div>
-      <!-- <pre>
-      {{ $route.params }}
-      {{ recipe }}
-    </pre
-      > -->
     </div>
   </div>
 </template>
@@ -58,8 +53,6 @@ export default {
             params: { recipe_id: this.$route.params.recipeId }
           }
         );
-
-        // console.log("response.status", response.status);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
@@ -106,6 +99,14 @@ export default {
 <style scoped>
 .wrapper {
   display: flex;
+  font-family: 'Palanquin Dark';
+}
+h1 {
+  font-family: 'Palanquin Dark';
+  text-align: center;
+}
+img {
+  border: pink solid 8px;
 }
 .wrapped {
   width: 50%;
@@ -116,7 +117,4 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-/* .recipe-header{
-
-} */
 </style>
