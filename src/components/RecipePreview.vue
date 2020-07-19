@@ -1,6 +1,10 @@
 <template>
   <router-link
-    :to="{ name: 'aboute' }"
+    :to="{ name: 'recipe',
+      params: {
+        recipe_id: this.recipe.id  
+      }
+    }"
     class="recipe-preview"
     @mouseover="hover = true"
     @mouseleave="hover = false"
