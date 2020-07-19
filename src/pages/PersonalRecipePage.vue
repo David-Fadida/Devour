@@ -19,9 +19,9 @@ export default {
       let response;
       try {
         response = await this.axios.get(
-          "http://localhost:3000/recipes/Information",
+          "http://localhost:3000/profiles/private/full",
           {
-            params: { recipe_id: this.$route.params.recipe_id }
+            params: { title: this.$route.params.title }
           }
         );
         if (response.status !== 200) this.$router.replace("/NotFound");

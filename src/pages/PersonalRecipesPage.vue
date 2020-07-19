@@ -1,17 +1,15 @@
 <template>
-   <div>
-    <div v-if="isExist" id="fav" class="row">
-    <div class="col-lg-4">
-      <h1>Favorites Recipes</h1>
+    <div>
+    <div id = "personal" class="row">
+    <div v-if="hasPersonalRecipes" class="col-lg-4">
+      <h1>Personal Recipes</h1>
       <b-row  v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+        <RecipePreview class="recipePreview" :recipe="r" :personalRecipeId="r.title" />
       </b-row>
     </div>
+    <div v-else-if="dontHave">
+        <h1>you dont have personal recipes</h1>
     </div>
-    <div v-else-if="notExist" id="no-favorites" >
-        <br>
-        <br>
-        <h1>you dont have favorites recipes</h1>
     </div>
    </div>
 </template>
@@ -20,29 +18,30 @@
 import RecipePreview from "../components/RecipePreview";
 export default {
     components: {
-        RecipePreview   
+        RecipePreview
     },
     data(){
         return{
             recipes:[],
-            isExist:false,
-            notExist:false
+            hasPersonalRecipes:false,
+            dontHave:false
         };
     },
     methods:{
-        async getFaves(){
+        async getPersonalRecipes(){
             this.recipes = [];
             let respone;
             this.axios.defaults.withCredentials = true;
             try{
-                respone = await this.axios.get("http://localhost:3000/profiles/favorites");
+                respone = await this.axios.get("http://localhost:3000/profiles/private");
                 console.log(respone)
                 if(respone.data){
-                    this.recipes.push(...respone.data.data);   
-                    this.isExist = true;
+                    this.recipes.push(...respone.data.data);
+                    this.hasPersonalRecipes = true;
                 }else{
-                    this.notExist = true;
+                    this.dontHave = true;
                 }
+                
             }catch(err){
                 console.log(err);
                  this.$router.replace("/NotFound");
@@ -50,16 +49,13 @@ export default {
         }
     },
     mounted(){
-        this.getFaves();
+        this.getPersonalRecipes();
     }
 }
 </script>
 
 <style>
-#fav{
-margin-left: 38%;
-}
-#no-favorites{
+#personal{
 margin-left: 38%;
 }
 </style>

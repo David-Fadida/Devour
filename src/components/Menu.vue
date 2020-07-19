@@ -11,10 +11,10 @@
         <font-awesome-icon icon="user-friends" size="sm"/> About 
       </router-link>
       <!-- PRIVATE -->
-      <b-dropdown text="Primary" variant="primary" class="m-2" id="personal">
-        <b-dropdown-item href="#">Action</b-dropdown-item>
-        <b-dropdown-item href="#">Another action</b-dropdown-item>
-        <b-dropdown-item href="#">Something else here</b-dropdown-item>
+      <b-dropdown v-if="$root.store.username" text="Personal" id="personal">
+        <b-dropdown-item :to="{ name: 'about' }">My Favorites</b-dropdown-item>
+        <b-dropdown-item href="#">Private Recipes</b-dropdown-item>
+        <b-dropdown-item :to="{ name: 'familyRecipes' }">Family Recipes</b-dropdown-item>
       </b-dropdown>
     </div>
     
@@ -45,10 +45,6 @@ export default {
   data() {
     return {
       user: "Guest",
-      arrayOfObjects: [],
-      object: {
-        name: 'Object Name',
-      }
     };
   },
   methods: {
@@ -68,15 +64,16 @@ export default {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: 0 !important;
-  height: 70px;
+  height: 62px;
   width: 100%;
   background-color: whitesmoke;
   font-family: 'Palanquin Dark';
   justify-content: center;
-  font-size: 26px;
+  font-size: 22px;
   -webkit-box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
   -moz-box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
   box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
+  z-index: 10;
 }
 
 #nav a {
@@ -126,6 +123,7 @@ export default {
   text-align: right;
   justify-content: center;
   color: #333333;
+  padding-bottom: 3px;
 }
 
 #main-section a{
@@ -134,6 +132,7 @@ export default {
 
 .user-section{
   margin-left: 30px;
+  font-size: 22px;
 }
 
 #user-section{
@@ -153,11 +152,39 @@ export default {
   opacity: 70%;
 }
 
-.hello{
+.hello {
   padding-right: 25px;
 }
 
-.dropdown-menu .show{
-  overflow: visible;
+#personal {
+  font-family: 'Palanquin Dark';
+}
+
+#personal .dropdown-menu {
+  background-color: whitesmoke;
+  padding: 3px;
+  border: none;
+}
+
+#personal a {
+  margin-left: 0;
+  font-size: 20px !important;
+}
+
+#personal button::after {
+  display: none;
+}
+
+#personal button:focus,
+#personal button {
+  background-color: transparent;
+  color: #333333;
+  margin-left: 20px;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-size: 22px;
+  padding: 10px;
+  padding-top: 4px;
 }
 </style>
