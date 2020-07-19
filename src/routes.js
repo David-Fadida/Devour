@@ -13,11 +13,6 @@ const routes = [
     component: () => import("./pages/RegisterPage"),
   },
   {
-    path: "/aboute",
-    name: "aboute",
-    component: () => import("./pages/AboutePage"),
-  },
-  {
     path: "/login",
     name: "login",
     component: () => import("./pages/LoginPage"),
@@ -30,13 +25,17 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    // UPDATE ABOUT PAGE NAME !!!!!
-    component: () => import("./pages/SearchPage"), 
+    component: () => import("./pages/AboutePage"), 
   },
   {
-    path: "/recipe/:recipeId",
+    path: "/recipes/Information/:recipe_id",
     name: "recipe",
     component: () => import("./pages/RecipeViewPage"),
+  },
+  {
+    path: "/familyRecipes",
+    name: "familyRecipes",
+    component: () => import("./pages/FamilyRecipePage"),
   },
   {
     path: "*",

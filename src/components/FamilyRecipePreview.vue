@@ -6,33 +6,18 @@
     @mouseleave="hover = false"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+      <img v-if="image_load" :src="recipe.image_url" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
-      <div class="recipe-info">
-        <!-- VEGAN -->
-        <font-awesome-icon v-if="recipe.vegetarian" icon="leaf" size="2x" class="info green"/>
-        <!-- VEGETATRIAN -->
-        <font-awesome-icon v-else-if="recipe.vegan" icon="seedling" size="2x" class="info green"/>
-        <!-- GLUTEN FREE -->
-        <font-awesome-icon v-if="recipe.glutenFree" icon="ribbon" size="2x" class="info red"/>
-        <!-- VISITED -->
-        <font-awesome-icon v-if="recipe.visited" icon="eye" size="2x" class="info blue"/>
-        <!-- FAVORITE -->
-        <font-awesome-icon v-if="!recipe.favorite" :icon="['far', 'star']" size="2x" class="info green"/>
-        <font-awesome-icon v-else-if="recipe.favorite" :icon="['fas', 'star']" size="2x" class="info green"/>
-      </div>
+      <font-awesome-icon :icon="user-tie" size="lg"/> Owner: {{ recipe.recipe_owner }}
+      <font-awesome-icon :icon="glass-cheers" size="lg"/> When Served: {{ recipe.when_served }}
       <ul class="recipe-overview">
         <li>
           <font-awesome-icon id="prepDuration" :icon="['far', 'clock']" size="lg"/>
-          {{ recipe.readyInMinutes }} mins
-        </li>
-        <li>
-          <font-awesome-icon id="likes" icon="heart" size="lg"/>
-          {{ recipe.aggregateLikes }} likes
+          {{ recipe.readyInMinute }} minutes
         </li>
       </ul>
     </div>

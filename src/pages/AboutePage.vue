@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
@@ -130,5 +130,5 @@ html {
 }  
 
 
-}
+} */
 </style>

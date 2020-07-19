@@ -12,9 +12,9 @@
       </router-link>
       <!-- PRIVATE -->
       <b-dropdown v-if="$root.store.username" text="Personal" id="personal">
-        <b-dropdown-item href="#">My Favorites</b-dropdown-item>
+        <b-dropdown-item :to="{ name: 'about' }">My Favorites</b-dropdown-item>
         <b-dropdown-item href="#">Private Recipes</b-dropdown-item>
-        <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
+        <b-dropdown-item :to="{ name: 'familyRecipes' }">Family Recipes</b-dropdown-item>
       </b-dropdown>
     </div>
     
