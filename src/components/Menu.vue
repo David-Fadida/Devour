@@ -45,10 +45,6 @@ export default {
   data() {
     return {
       user: "Guest",
-      arrayOfObjects: [],
-      object: {
-        name: 'Object Name',
-      }
     };
   },
   methods: {
