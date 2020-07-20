@@ -4,7 +4,7 @@
       <b-card no-body class="overflow-hidden">
         <b-row no-gutters>
           <b-col md="6" id="image-wrapper">
-            <img v-if="image_load" :src="recipe.image" alt="Image" class="rounded-0">
+            <img :src="recipe.image" alt="Image" class="rounded-0">
           </b-col>
           <b-col md="6">
             <b-card-body id="general-info">
