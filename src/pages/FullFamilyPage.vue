@@ -1,9 +1,9 @@
 <template>
-  <FullRecipeView v-if="loaded" :recipe="this.recipe"/>
+  <FamilyRecipeView v-if="loaded" :recipe="this.recipe"/>
 </template>
 
 <script>
-import FullRecipeView from "../components/FullRecipeView.vue";
+import FamilyRecipeView from "../components/FamilyRecipeView.vue";
 export default {
   data() {
     return {
@@ -11,12 +11,16 @@ export default {
       loaded: false
     };
   },
-  components: {
-    FullRecipeView
+  mounted() {
+      this.getFamilyRecipe();
   },
-  async created() {
+  components: {
+    FamilyRecipeView
+  },
+  methods: {
+    async getFamilyRecipe() {
     try {
-      let title;
+        let title;
         if (this.$route.params.title)
             this.$root.store.saveRecipeTitle(this.$route.params.title);
         title = localStorage.getItem('recipe_title');
@@ -24,7 +28,7 @@ export default {
       try {
         this.axios.defaults.withCredentials = true;
         response = await this.axios.get(
-          "http://localhost:3000/profiles/private/full",
+          "http://localhost:3000/profiles/family/full",
           {
             params: { title: title }
           }
@@ -40,6 +44,7 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  }
   }
 };
 </script>

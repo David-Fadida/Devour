@@ -105,6 +105,11 @@ const shared_data = {
     form.amount = lastSearchFormByUser.amount;
     this.lastSearchFormByUser = form;
     localStorage.setItem("lastSearchFormByUser",JSON.stringify(this.lastSearchFormByUser))
+  },
+  recipe_title: localStorage.recipe_title,
+  saveRecipeTitle(title){
+    this.recipe_title = title;
+    localStorage.setItem("recipe_title",this.recipe_title);
   }
 };
 

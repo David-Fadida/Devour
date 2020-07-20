@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipe_id: this.recipe.id }}"
+    :to="{ name: 'FullFamilyRecipe', params: { title: this.recipe.title }}"
     class="recipe-preview"
     @mouseover="hover = true"
     @mouseleave="hover = false"

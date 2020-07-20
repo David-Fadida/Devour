@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="searchcontainer">
       <div>
-        <b-form @submit.prevent="handleSearch" id="register-component">
+        <b-form @submit.prevent="handleSearch" id="search-component">
         <div class="active-cyan-3 active-cyan-4 mb-4" id="query" >
           <font-awesome-icon icon="search" size="md"/> SERACH
           <input class="form-control" v-model="searchForm.query" type="text" 
-          placeholder="" aria-label="Search" id="search-field">
+          placeholder="" aria-label="Search" id="search-field" required>
         </div> 
         <div class="row">
           <div class="col-3">
@@ -202,7 +202,7 @@ export default {
    height: 1px;
    background-color: #333333;
   }
-  #register-component {
+  #search-component {
     font-family: 'Palanquin Dark';
     color: #333333;
     background-color: whitesmoke;
@@ -224,7 +224,7 @@ export default {
     margin: 0 25% !important;
     margin-bottom: 20px !important;
   }
-  .container {
+  .searchcontainer {
     width: 90% !important;
     margin-left: 5% !important;
     margin-right: 5% !important;
@@ -237,30 +237,30 @@ export default {
   h1 {
     text-align: center;
   }
-  #register-component{
+  #search-component{
     font-size: 115%;
   }
 
-  #register-component select:focus,
-  #register-component input:focus,
-  #register-component select:active,
-  #register-component input:active,
-  #register-component select,
-  #register-component input{
+  #search-component select:focus,
+  #search-component input:focus,
+  #search-component select:active,
+  #search-component input:active,
+  #search-component select,
+  #search-component input{
     border: none;
     outline: none !important;
     background-color: transparent !important;
     box-shadow: none; 
   }
 
-  #register-component input:focus,
-  #register-component input{
+  #search-component input:focus,
+  #search-component input{
     border-bottom: #333333 1px solid; 
     border-radius: 0; 
   }
 
-  #register-component select:focus,
-  #register-component select{
+  #search-component select:focus,
+  #search-component select{
     border-bottom: #333333 1px solid; 
     border-radius: 0; 
   }
@@ -269,10 +269,10 @@ export default {
     background-color: whitesmoke;
   }
 
-  #register-component #register,
-  #register-component #register:focus,
-  #register-component #reset:focus,
-  #register-component #reset {
+  #search-component #register,
+  #search-component #register:focus,
+  #search-component #reset:focus,
+  #search-component #reset {
     width: 40%;
     margin-left: 5%;
     font-size: 115%;
@@ -281,11 +281,11 @@ export default {
     box-shadow: none;
   }
 
-  #register-component #register {
+  #search-component #register {
     background-color: #333333 !important;
   }
 
-  #register-component #reset {
+  #search-component #reset {
     background-color: #333333 !important;
   }
 </style>
