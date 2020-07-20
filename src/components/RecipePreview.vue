@@ -2,14 +2,14 @@
 <div class="recipe-preview">
     <div class="recipe-body">
       <router-link  v-if="!this.personalRecipeId"
-      :to="{ name: 'recipe', params: { recipe_id: recipe.id }}"
+      :to="{ name: 'recipe', params:{recipe_id: recipe.id}}"
       @mouseover="hover = true"
       @mouseleave="hover = false"
       >
       <img :src="recipe.image" class="recipe-image" />
       </router-link>
       <router-link  v-else-if="this.personalRecipeId"
-      :to="{ name: 'personalRecipes'}"
+      :to="{ name: 'personalRecipesFull', params:{title: recipe.title}}"
       @mouseover="hover = true"
       @mouseleave="hover = false"
       >

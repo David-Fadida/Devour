@@ -120,6 +120,7 @@ export default {
       this.amounts.push(5);
       this.amounts.push(10);
       this.amounts.push(15);
+      this.searchForm.amount = 5;
        if (this.$root.store.username){
         if (localStorage.getItem("lastSearchFormByUser") != undefined) {
         this.searchForm = JSON.parse(localStorage.getItem("lastSearchFormByUser"));
@@ -133,8 +134,9 @@ export default {
       try{
         respone = await this.axios.get("http://localhost:3000/recipes/search/query/" 
         + this.searchForm.query + "/number/" 
-        + this.searchForm.amount , {
-          query:{
+        + this.searchForm.amount,
+        {
+          params:{
             cuisine: this.searchForm.cusine,
             diet: this.searchForm.diet,
             intolerances: this.searchForm.intolorence
@@ -143,6 +145,9 @@ export default {
         this.recipes = [];
         this.lastSearchResults = [];
         this.recipes.push(...respone.data.data);
+        if(this.recipes.length == 0){
+          alert("No Recipes Found")
+        }
         if (this.$root.store.username) {
           this.$root.store.saveLastSearchFormByUser(this.searchForm);
           this.$root.store.saveLastSearchByUser(this.recipes);
@@ -153,12 +158,11 @@ export default {
       }
     },
     handleReset(){
-      console.log("eitan")
-      this.form.query = null;
-      this.form.diet = null;
-      this.form.intolorence = null;
-      this.form.cusine = null;
-      this.form.amount = 5;
+      this.searchForm.query = null;
+      this.searchForm.diet = null;
+      this.searchForm.intolorence = null;
+      this.searchForm.cusine = null;
+      this.searchForm.amount = 5;
     },
     sortByPopularity(){
       if(this.recipes && this.recipes.length !=0){
