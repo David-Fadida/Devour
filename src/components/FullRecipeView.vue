@@ -4,7 +4,7 @@
       <b-card no-body class="overflow-hidden">
         <b-row no-gutters>
           <b-col md="6" id="image-wrapper">
-            <img v-if="image_load" :src="recipe.image" alt="Image" class="rounded-0">
+            <img :src="recipe.image" alt="Image" class="rounded-0">
           </b-col>
           <b-col md="6">
             <b-card-body id="general-info">
@@ -30,7 +30,7 @@
                   <!-- VISITED -->
                   <font-awesome-icon v-if="recipe.visited" icon="eye" size="2x" class="info blue"/>
                   <!-- FAVORITE -->
-                  <font-awesome-icon v-if="!recipe.favorite" :icon="['far', 'star']" size="2x" class="info green"/>
+                  <font-awesome-icon @click="addToFavorites" v-if="!recipe.favorite" :icon="['far', 'star']" size="2x" class="info green"/>
                   <font-awesome-icon v-else-if="recipe.favorite" :icon="['fas', 'star']" size="2x" class="info green"/>
                 </div>
               </b-card-text>
@@ -63,11 +63,10 @@
 
 <script>
 export default {
-   mounted() {
+  mounted() {
     this.axios.get(this.recipe.image).then((i) => {
       this.image_load = true;
     });
-    console.log(this.recipe.ingredients.split(' ~ '));
   },
   data() {
     return {
@@ -83,14 +82,15 @@ export default {
   methods:{
     async addToFavorites(){
       try{
-      this.axios.defaults.withCredentials = true;
-      await this.axios.post(
-          "http://localhost:3000/profile/favorites",{
-           recipe:this.recipe.id,
+        this.axios.defaults.withCredentials = true;
+        await this.axios.post(
+          "http://localhost:3000/profiles/favorites",{
+          recipe:this.recipe.id,
           }
-      );
+        );
+        this.recipe.favorite = "true";
       }catch(err){
-          console.log(err)
+        console.log(err)
       }
     }
   },

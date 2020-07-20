@@ -1,53 +1,73 @@
 <template>
   <div class="container">
-      <h1>Search Page</h1>
       <div>
-        <b-form @submit.prevent="handleSearch" >
-        <p>search for recipes:</p>
-        <div class="active-cyan-3 active-cyan-4 mb-4" id = "query">
-        <input class="form-control" v-model="searchForm.query" type="text" placeholder="name of recipe or dish" aria-label="Search">
-        </div>  
-        <b-form-group class = form
-          id="group-for-cusine"
-          description=""
-          label="Cusine"
-          label-for="cusines"
-        >
-        <b-form-select id="cusines" v-model="searchForm.cusine" :options="cusines"></b-form-select>
-        </b-form-group>
-        <b-form-group class = form
-          id="group-for-diet"
-          description=""
-          label="Diet"
-          label-for="diets"
-        >
-        <b-form-select id="diets" v-model="searchForm.diet" :options="diets"></b-form-select>
-        </b-form-group>
-        <b-form-group class = form
-          id="group-for-intolerance"
-          description=""
-          label="Intolerance"
-          label-for="intolerance"
-        >
-        <b-form-select id="intolerance" v-model="searchForm.intolorence" :options="intolerances"></b-form-select>
-        </b-form-group>
-        <b-form-group
+        <b-form @submit.prevent="handleSearch" id="register-component">
+        <div class="active-cyan-3 active-cyan-4 mb-4" id="query" >
+          <font-awesome-icon icon="search" size="md"/> SERACH
+          <input class="form-control" v-model="searchForm.query" type="text" 
+          placeholder="" aria-label="Search" id="search-field">
+        </div> 
+        <div class="row">
+          <div class="col-3">
+            <b-form-group class = form
+              id="group-for-cusine"
+              label-cols-sm="4"
+              description=""
+              label="Cusine"
+              label-for="cusines"
+              >
+            <b-form-select id="cusines" v-model="searchForm.cusine" :options="cusines"></b-form-select>
+          </b-form-group>
+          </div>
+          <div class="col-3">
+            <b-form-group class = form
+              id="group-for-diet"
+              label-cols-sm="4"
+              description=""
+              label="Diet"
+              label-for="diets"
+            >
+            <b-form-select id="diets" v-model="searchForm.diet" :options="diets"></b-form-select>
+            </b-form-group>
+          </div>
+          <div class="col-4">
+          <b-form-group class = form
+            id="group-for-intolerance"
+            label-cols-sm="5"
+            description=""
+            label="Intolerance"
+            label-for="intolerance"
+          >
+          <b-form-select id="intolerance" v-model="searchForm.intolorence" :options="intolerances"></b-form-select>
+          </b-form-group>
+          </div>
+          <div class="col-2">
+          <b-form-group
           id="group-for-amount"
+          label-cols-sm="6"
           description=""
-          label="Number Of Results"
+          label="Results"
           label-for="amount"
-        >
-        <b-form-select id="amount" v-model="searchForm.amount" :options="amounts"></b-form-select>
-        </b-form-group>
-        <input class="btn btn-primary" type="submit" value="Search">   <input class="btn btn-primary" type="reset" value="Reset">
+          >
+          <b-form-select id="amount" v-model="searchForm.amount" :options="amounts"></b-form-select>
+          </b-form-group>
+          </div>
+        </div> 
+        
+        <div style="width: 50%; margin-left: 24.1%;">
+          <input class="btn btn-primary" type="submit" value="Search" id="register">   
+          <input class="btn btn-primary" type="reset" value="Reset" id="reset">
+        </div>
         </b-form>
       </div>
+      <br>
+      <hr>
       <br>
      <b-dropdown id="sort" text="sort by" class="m-md-2">
         <b-dropdown-item @click= "sortByPopularity">Popularity</b-dropdown-item>
         <b-dropdown-item @click= "sortByPreperationTime">Preperation Time</b-dropdown-item>
       </b-dropdown>  
-    <div v-if="this.recipes.length != 0">
+    <div v-if="this.recipes.length != 0" class="results">
       <RecipePreview
         v-for="r in recipes"
         :key="r.id"
@@ -113,9 +133,9 @@ export default {
       try{
         respone = await this.axios.get("http://localhost:3000/recipes/search/query/" 
         + this.searchForm.query + "/number/" 
-        + this.searchForm.amount,{
+        + this.searchForm.amount , {
           query:{
-            cusine: this.searchForm.cusine,
+            cuisine: this.searchForm.cusine,
             diet: this.searchForm.diet,
             intolerances: this.searchForm.intolorence
           }
@@ -162,22 +182,106 @@ export default {
         });
       }
     }
-
   }
 }
 </script>
 
 <style>
-  .form{
-    float: left;
-    margin-right: 15%;
+.results{
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  grid-template-rows: repeat(3, auto);
+  grid-gap: 20px;
+  margin-left: 10%;
+}
+  hr{
+   height: 1px;
+   background-color: #333333;
+  }
+  #register-component {
+    font-family: 'Palanquin Dark';
+    color: #333333;
+    background-color: whitesmoke;
+    /* -webkit-box-shadow: 1px 6px 7px 4px rgba(120,120,120,1);
+    -moz-box-shadow: 1px 6px 7px 4px rgba(120,120,120,1);
+    box-shadow: 1px 6px 7px 4px rgba(120,120,120,1); */
+    padding: 2%;
+    margin-left: 10%;
+    text-align: center;
+    width: 80% !important;
+  }
+  #search-field {
+    /* min-width: 550px; */
+    width: 87%;
+    margin-left: 8%;
+    border: #333333 1px solid !important;
+  }
+  #query {
+    margin: 0 25% !important;
+    margin-bottom: 20px !important;
+  }
+  .container {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    max-width: 90% !important;
+  }
+  h3 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    text-align: center;
+  }
+  #register-component{
+    font-size: 115%;
   }
 
-  #query{
-     margin-right: 15%;
+  #register-component select:focus,
+  #register-component input:focus,
+  #register-component select:active,
+  #register-component input:active,
+  #register-component select,
+  #register-component input{
+    border: none;
+    outline: none !important;
+    background-color: transparent !important;
+    box-shadow: none; 
   }
 
-  #group-for-amount{
-    margin-right: 85%;
+  #register-component input:focus,
+  #register-component input{
+    border-bottom: #333333 1px solid; 
+    border-radius: 0; 
+  }
+
+  #register-component select:focus,
+  #register-component select{
+    border-bottom: #333333 1px solid; 
+    border-radius: 0; 
+  }
+
+  input:internal-autofill-selected{
+    background-color: whitesmoke;
+  }
+
+  #register-component #register,
+  #register-component #register:focus,
+  #register-component #reset:focus,
+  #register-component #reset {
+    width: 40%;
+    margin-left: 5%;
+    font-size: 115%;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  #register-component #register {
+    background-color: #333333 !important;
+  }
+
+  #register-component #reset {
+    background-color: #333333 !important;
   }
 </style>

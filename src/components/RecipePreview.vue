@@ -2,7 +2,7 @@
 <div class="recipe-preview">
     <div class="recipe-body">
       <router-link  v-if="!this.personalRecipeId"
-      :to="{ name: 'personalRecipes'}"
+      :to="{ name: 'recipe', params: { recipe_id: recipe.id }}"
       @mouseover="hover = true"
       @mouseleave="hover = false"
       >

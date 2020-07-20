@@ -45,18 +45,8 @@ export default {
       lastViewdRecipes:[]
     }
   },
-  methods:{
-    async getRandomRecipes(){
-      let respone;
-      try{
-        respone = await this.axios.get("http://localhost:3000/recipes/random");
-        this.RandomRecipes= [];
-        this.RandomRecipes.push(...respone.data.data);
-      }catch(err){
-        console.log(err)
-      }
-    },
-    async getLastViewedRecipes(){
+  created: {
+    async getLastViewedRecipes() {
       let respone;
       try{
         this.axios.defaults.withCredentials = true;
@@ -71,6 +61,18 @@ export default {
         console.log(err)
       }
     }
+  },
+  methods:{
+    async getRandomRecipes(){
+      let respone;
+      try{
+        respone = await this.axios.get("http://localhost:3000/recipes/random");
+        this.RandomRecipes= [];
+        this.RandomRecipes.push(...respone.data.data);
+      }catch(err){
+        console.log(err)
+      }
+    },
   },
   mounted(){
     this.getRandomRecipes();

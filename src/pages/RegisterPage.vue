@@ -1,11 +1,14 @@
 <template>
-  <div class="container">
-    <h1 class="title">Register</h1>
+  <div class="container" id="register-component">
+    <h1 class="title"> 
+      DEV <font-awesome-icon icon="cookie-bite" size="md"/> UR
+    </h1>
+    <h3>Create Your Account</h3>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <!-- USERNAME -->
 	  <b-form-group
         id="input-group-username"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Username:"
         label-for="username"
       >
@@ -28,7 +31,7 @@
 	  <!-- FIRSTNAME -->
 	  <b-form-group
         id="input-group-firstname"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="First Name:"
         label-for="firstName"
       >
@@ -48,7 +51,7 @@
 	  <!-- LASTNAME -->
 	  <b-form-group
         id="input-group-lastname"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Last Name:"
         label-for="lastName"
       >
@@ -68,7 +71,7 @@
 	  <!-- COUNTRY -->
       <b-form-group
         id="input-group-country"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Country:"
         label-for="country"
       >
@@ -85,7 +88,7 @@
 	  <!-- PASSWORD -->
       <b-form-group
         id="input-group-Password"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Password:"
         label-for="password"
       >
@@ -116,8 +119,8 @@
 	  <!-- CONFIRM PASSWORD -->
       <b-form-group
         id="input-group-confirmedPassword"
-        label-cols-sm="3"
-        label="Confirm Password:"
+        label-cols-sm="4"
+        label="Confirmation:"
         label-for="confirmedPassword"
       >
         <b-form-input
@@ -138,7 +141,7 @@
 	  <!-- EMAIL -->
 	  <b-form-group
         id="input-group-email"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Email:"
         label-for="email"
       >
@@ -158,7 +161,7 @@
 	  <!-- PROFILE IMAGE -->
 	  <b-form-group
         id="input-group-lastname"
-        label-cols-sm="3"
+        label-cols-sm="4"
         label="Profile Image:"
         label-for="profileImage"
       >
@@ -173,15 +176,16 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-button type="reset" variant="danger">Reset</b-button>
-      <b-button
-        type="submit"
-        variant="primary"
-        style="width:250px;"
-        class="ml-5 w-75"
-        >Register</b-button
-      >
-      <div class="mt-2">
+      <b-button type="reset" variant="danger" id="reset">
+        <font-awesome-icon icon="trash-alt" size="md"/>
+         - Reset
+      </b-button>
+      <b-button type="submit" id="register" variant="primary">
+        <font-awesome-icon icon="check" size="md"/>
+         - Register
+      </b-button>
+
+      <div class="mt-2" style="text-align: center;">
         You have an account already?
         <router-link to="login"> Log in here</router-link>
       </div>
@@ -195,7 +199,6 @@
     >
       Register failed: {{ form.submitError }}
     </b-alert>
-
   </div>
 </template>
 
@@ -275,6 +278,7 @@ export default {
   },
   mounted() {
     this.countries.push(...countries);
+
   },
   methods: {
     validateState(param) {
@@ -322,12 +326,67 @@ export default {
       this.$nextTick(() => {
         this.$v.$reset();
       });
-	}
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
+#register-component {
+  font-family: 'Palanquin Dark';
+  color: #333333;
+  background-color: whitesmoke;
+  // -webkit-box-shadow: 1px 6px 7px 4px rgba(120,120,120,1);
+  // -moz-box-shadow: 1px 6px 7px 4px rgba(120,120,120,1);
+  // box-shadow: 1px 6px 7px 4px rgba(120,120,120,1);
+  padding: 2%;
+  margin-top: 15px;
+}
 .container {
-  max-width: 500px;
+  max-width: 550px;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+h1 {
+  text-align: center;
+}
+#register-component{
+  font-size: 115%;
+}
+
+#register-component input:focus,
+#register-component input:active,
+#register-component input{
+  border: none;
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none; 
+}
+
+#register-component input:focus,
+#register-component input{
+  border-bottom: #333333 1px solid; 
+  border-radius: 0; 
+}
+
+input:internal-autofill-selected{
+  background-color: whitesmoke;
+}
+
+#register,
+#register:focus,
+#reset:focus,
+#reset {
+  width: 40%;
+  margin: 5%;
+  font-size: 115%;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+#register {
+  background-color: #333333;
 }
 </style>

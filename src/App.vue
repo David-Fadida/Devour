@@ -36,8 +36,6 @@ export default {
   color: #333333;
   background-color: whitesmoke;
   min-height: 100vh;
-}
-.content{
   padding-top: 90px;
 }
 </style>
