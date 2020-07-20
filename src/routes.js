@@ -31,7 +31,7 @@ const routes = [
     path: "/about",
     name: "about",
     // UPDATE ABOUT PAGE NAME !!!!!
-    component: () => import("./pages/SearchPage"), 
+    component: () => import("./pages/AboutePage"), 
   },
   {
     path: "/recipe/:recipeId",
@@ -39,9 +39,19 @@ const routes = [
     component: () => import("./pages/RecipeViewPage"),
   },
   {
+    path: "/favorites",
+    name: "favorites",
+    component: () => import("./pages/FavoritesRecipesPage"),
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound,
+  },
+  {
+    path: "/personalRecipes",
+    name: "personalRecipes",
+    component: () => import("./pages/PersonalRecipesPage"),
   },
 ];
 

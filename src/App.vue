@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu />
+    <Menu/>
     <router-view class="content"/>
   </div>
 </template>
@@ -38,5 +38,9 @@ export default {
 }
 .content{
   padding-top: 90px;
+}
+
+.eitan{
+  position: fixed;
 }
 </style>

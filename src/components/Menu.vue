@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       user: "Guest",
-      arrayOfObjects: [],
       object: {
         name: 'Object Name',
       }
@@ -77,6 +76,7 @@ export default {
   -webkit-box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
   -moz-box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
   box-shadow: -2px 2px 9px 7px rgba(0,0,0,0.53);
+  z-index: 10;
 }
 
 #nav a {

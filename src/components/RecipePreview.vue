@@ -1,12 +1,20 @@
 <template>
-  <router-link
-    :to="{ name: 'aboute' }"
-    class="recipe-preview"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  >
+<div class="recipe-preview">
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+      <router-link  v-if="!this.personalRecipeId"
+      :to="{ name: 'personalRecipes'}"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
+      >
+      <img :src="recipe.image" class="recipe-image" />
+      </router-link>
+      <router-link  v-else-if="this.personalRecipeId"
+      :to="{ name: 'personalRecipes'}"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
+      >
+      <img :src="recipe.image" class="recipe-image" />
+      </router-link>
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
@@ -14,16 +22,16 @@
       </div>
       <div class="recipe-info">
         <!-- VEGAN -->
-        <font-awesome-icon v-if="recipe.vegetarian || true" icon="leaf" size="2x" class="info green"/>
+        <font-awesome-icon v-if="recipe.vegetarian" icon="leaf" size="2x" class="info green"/>
         <!-- VEGETATRIAN -->
-        <font-awesome-icon v-else-if="recipe.vegan || true" icon="seedling" size="2x" class="info green"/>
+        <font-awesome-icon v-else-if="recipe.vegan" icon="seedling" size="2x" class="info green"/>
         <!-- GLUTEN FREE -->
-        <font-awesome-icon v-if="recipe.glutenFree || true" icon="ribbon" size="2x" class="info red"/>
+        <font-awesome-icon v-if="recipe.glutenFree" icon="ribbon" size="2x" class="info red"/>
         <!-- VISITED -->
-        <font-awesome-icon v-if="recipe.visited || true" icon="eye" size="2x" class="info blue"/>
+        <font-awesome-icon v-if="recipe.visited" icon="eye" size="2x" class="info blue"/>
         <!-- FAVORITE -->
-        <font-awesome-icon v-if="!recipe.favorite || true" :icon="['far', 'star']" size="2x" class="info green"/>
-        <font-awesome-icon v-else-if="recipe.favorite || true" :icon="['fas', 'star']" size="2x" class="info green"/>
+        <font-awesome-icon @click="addToFavorites" v-if="!recipe.favorite" :icon="['far', 'star']" size="2x" class="info green"/>
+        <font-awesome-icon v-else-if="recipe.favorite" :icon="['fas', 'star']" size="2x" class="info green"/>
       </div>
       <ul class="recipe-overview">
         <li>
@@ -36,16 +44,11 @@
         </li>
       </ul>
     </div>
-  </router-link>
+  </div> 
 </template>
 
 <script>
 export default {
-  mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
-      this.image_load = true;
-    });
-  },
   data() {
     return {
       image_load: false,
@@ -56,8 +59,30 @@ export default {
     recipe: {
       type: Object,
       required: true
-    }
+    },
+    personalRecipeId: {
+      type: String,
+      required: false,
+      default() {
+        return undefined;
+      },
+    },
   },
+  methods:{
+    async addToFavorites(){
+      try{
+        this.axios.defaults.withCredentials = true;
+        await this.axios.post(
+          "http://localhost:3000/profiles/favorites",{
+          recipe:this.recipe.id,
+          }
+        );
+        this.recipe.favorite = "true";
+      }catch(err){
+        console.log(err)
+      }
+    }
+  }
   
 };
 </script>

@@ -12,7 +12,7 @@ export default {
                 "http://localhost:3000/profile/favorites",{
                  recipe:this.recipe.id,
                 }
-                );
+            );
             }catch(err){
                 console.log(err)
             }
