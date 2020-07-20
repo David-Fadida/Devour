@@ -30,8 +30,8 @@
         <!-- VISITED -->
         <font-awesome-icon v-if="recipe.visited" icon="eye" size="2x" class="info blue"/>
         <!-- FAVORITE -->
-        <font-awesome-icon @click="addToFavorites" v-if="!recipe.favorite" :icon="['far', 'star']" size="2x" class="info green"/>
-        <font-awesome-icon v-else-if="recipe.favorite" :icon="['fas', 'star']" size="2x" class="info green"/>
+        <font-awesome-icon @click="addToFavorites" v-if="!recipe.favorite && !personalRecipeId" :icon="['far', 'star']" size="2x" class="info green"/>
+        <font-awesome-icon v-else-if="recipe.favorite && !personalRecipeId" :icon="['fas', 'star']" size="2x" class="info green"/>
       </div>
       <ul class="recipe-overview">
         <li>

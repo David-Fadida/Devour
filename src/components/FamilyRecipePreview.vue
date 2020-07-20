@@ -6,14 +6,14 @@
     @mouseleave="hover = false"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image_url" class="recipe-image" />
+      <img :src="recipe.image_url" class="recipe-image" />
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
-      <font-awesome-icon :icon="user-tie" size="lg"/> Owner: {{ recipe.recipe_owner }}
-      <font-awesome-icon :icon="glass-cheers" size="lg"/> When Served: {{ recipe.when_served }}
+      <!-- <font-awesome-icon :icon="user-tie" size="lg"/> Owner: {{ recipe.recipe_owner }}
+      <font-awesome-icon :icon="glass-cheers" size="lg"/> When Served: {{ recipe.when_served }} -->
       <ul class="recipe-overview">
         <li>
           <font-awesome-icon id="prepDuration" :icon="['far', 'clock']" size="lg"/>

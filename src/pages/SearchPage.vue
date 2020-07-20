@@ -68,14 +68,14 @@
         <b-dropdown-item @click= "sortByPreperationTime">Preperation Time</b-dropdown-item>
       </b-dropdown>  
     <div v-if="this.recipes.length != 0" class="results">
-      <RecipePreview
+      <RecipePreview class="recipe-pers"
         v-for="r in recipes"
         :key="r.id"
         :recipe = "r"
       />
     </div>
-    <div v-else-if="this.recipes.length == 0">
-      <RecipePreview
+    <div v-else-if="this.recipes.length == 0" class="results">
+      <RecipePreview class="recipe-pers"
         v-for="r in lastSearchResults"
         :key="r.id"
         :recipe = "r"
@@ -193,10 +193,13 @@ export default {
 <style>
 .results{
   display: grid;
-  grid-template-columns: repeat(3, 25%);
+  grid-template-columns: repeat(3, 23%);
   grid-template-rows: repeat(3, auto);
-  grid-gap: 20px;
-  margin-left: 10%;
+  grid-gap: 4%;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
 }
   hr{
    height: 1px;

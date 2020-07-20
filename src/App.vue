@@ -38,4 +38,8 @@ export default {
   min-height: 100vh;
   padding-top: 90px;
 }
+
+html{
+  background-color: whitesmoke;
+}
 </style>

@@ -1,17 +1,18 @@
 <template>
    <div>
-    <div v-if="isExist" id="fav" class="row">
-    <div class="col-lg-4">
-      <h1>Favorites Recipes</h1>
-      <b-row  v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-row>
+    <div v-if="isExist" id="fav">
+    <div>
+      <h1 style="text-align: center;">Favorites Recipes</h1>
+      <br><br>
+      <div class="results">
+        <RecipePreview v-for="r in recipes" :key="r.id" :recipe="r" />
+      </div>
     </div>
     </div>
     <div v-else-if="notExist" id="no-favorites" >
         <br>
         <br>
-        <h1>you dont have favorites recipes</h1>
+        <h1>You Dont Have Favorites Recipes</h1>
     </div>
    </div>
 </template>
@@ -56,10 +57,19 @@ export default {
 </script>
 
 <style>
-#fav{
-margin-left: 38%;
+.results{
+  display: grid;
+  grid-template-columns: repeat(3, 23%);
+  grid-template-rows: repeat(3, auto);
+  grid-gap: 4%;
+  width: 80%;
+  margin-left: 10%;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
 }
-#no-favorites{
-margin-left: 38%;
+h1 {
+    font-family: 'Palanquin Dark' !important;
+    color: #333333;
 }
 </style>

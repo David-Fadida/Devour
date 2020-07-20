@@ -1,9 +1,8 @@
 <template>
 <div>
     <h1>Last Viewed Recipes</h1>
-    <br>
     <div class = "last-viewed">
-        <b-row v-for="r in lastViewdRecipes" :key="r.id">
+        <b-row id="lasts" v-for="r in lastViewdRecipes" :key="r.id">
             <RecipePreview class="recipePreview" :recipe="r" />
         </b-row>
     </div>
@@ -48,5 +47,9 @@ export default {
 </script>
 
 <style>
-
+#lasts {
+  align-items: center;
+  justify-content: center;
+  padding: 2% 8%;
+}
 </style>

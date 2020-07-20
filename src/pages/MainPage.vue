@@ -1,27 +1,33 @@
 <template>
-  <div class="container">
-    <h1 class="title">Main Page</h1>
+  <div class="container" id="main">
     <br>
     <!-- <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
     {{ !$root.store.username }} -->
-    <h1>Random Recipes</h1>
     <div class="row">
-    <div class="col-lg-4">
-      <input class="btn btn-primary" type="submit" value="New Random Recipes" @click="getRandomRecipes">
+    <div class="col-lg-5" id="explore">
+      <h1>Explore New Flavors 
+      <b-button size="lg"  @click="getRandomRecipes">
+        <font-awesome-icon :icon="[ 'fas', 'sync-alt' ]" size="lg"/>
+      </b-button>
+      </h1>
       <b-row id = "randoms" v-for="r in RandomRecipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+          <RecipePreview class="recipePreview" :recipe="r" />
       </b-row>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-5">
       <div>
         <lastReciepesSeen v-if="this.$root.store.username"/>
       </div>
       <div class = "last-viewed" v-if="!this.$root.store.username">
-        <h4>to see last viewed recipes please log in first</h4>
+        <br><br><br>
+        <h2>To See Last Viewed Recipes Please Log In First</h2>
         <Login/>
       </div>
     </div>
   </div>
+  <br>
+  <br>
 </div>
 </template>
 
@@ -62,13 +68,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-// #last-viewed{
-//   margin-left: 80%;
-// }
-// #randoms{
-//   margin-right: 80%;
-// }
+#main {
+  font-family: 'Palanquin Dark';
+  color: #333333;
+  background-color: whitesmoke;
+  text-align: center;
+}
 .RandomRecipes {
   margin: 10px 0 10px;
 }
@@ -79,5 +84,13 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+#randoms {
+  align-items: center;
+  justify-content: center;
+  padding: 2% 8%; 
+}
+.fa-input {
+  font-family: FontAwesome;
 }
 </style>
