@@ -7,22 +7,16 @@
     <h1>Random Recipes</h1>
     <div class="row">
     <div class="col-lg-4">
+      <input class="btn btn-primary" type="submit" value="New Random Recipes" @click="getRandomRecipes">
       <b-row id = "randoms" v-for="r in RandomRecipes" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-row>
     </div>
     <div class="col-lg-4">
-       <h1>Last Viewed Recipes</h1>
-       <br>
-      <div class = "last-viewed" v-if="lastViewdRecipes.length != 0 && this.$root.store.username">
-        <b-row v-for="r in lastViewdRecipes" :key="r.id">
-          <RecipePreview class="recipePreview" :recipe="r" />
-        </b-row>
+      <div>
+        <lastReciepesSeen v-if="this.$root.store.username"/>
       </div>
-      <div class = "last-viewed" v-if="lastViewdRecipes.length == 0 && this.$root.store.username">
-        <h3>you didnt view any recipe yet</h3>
-      </div>
-      <div class = "last-viewed" v-else-if="!this.$root.store.username">
+      <div class = "last-viewed" v-if="!this.$root.store.username">
         <h4>to see last viewed recipes please log in first</h4>
         <Login/>
       </div>
@@ -34,36 +28,23 @@
 <script>
 import Login from "../pages/LoginPage";
 import RecipePreview from "../components/RecipePreview";
+import lastReciepesSeen from "../components/lastReciepesSeen";
 export default {
   components: {
     RecipePreview,
-    Login
+    Login,
+    lastReciepesSeen
   },
   data(){
     return{
       RandomRecipes:[],
-      lastViewdRecipes:[]
-    }
-  },
-  created: {
-    async getLastViewedRecipes() {
-      let respone;
-      try{
-        this.axios.defaults.withCredentials = true;
-        respone = await this.axios.get("http://localhost:3000/profiles/last");
-        if(respone.data === "No recepies viewed"){
-          return;
-        }else{
-          this.lastViewdRecipes= [];
-          this.lastViewdRecipes.push(...respone.data.data);
-        }
-      }catch(err){
-        console.log(err)
-      }
+      isEmpty:false,
+      isFull:false
     }
   },
   methods:{
     async getRandomRecipes(){
+      console.log("EEEEitan")
       let respone;
       try{
         respone = await this.axios.get("http://localhost:3000/recipes/random");
@@ -76,9 +57,6 @@ export default {
   },
   mounted(){
     this.getRandomRecipes();
-    if(this.$root.store.username){
-      this.getLastViewedRecipes();
-    }
   }
 };
 </script>
