@@ -39,7 +39,6 @@ router.get("/search/query/:query/number/:number", async (req, res, next) => {
   try {
     const { cuisine, diet, intolerances} = req.query;
     const { query, number } = req.params;
-    console.log( req.params.query + " , " + req.query.cuisine)
     const search_response = await axios.get(`${api_domain}/search`, {
       params: {
         query: query,

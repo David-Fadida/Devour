@@ -17,8 +17,8 @@
                 {{ recipe.readyInMinute }} minutes
               </h1>
               <br>
-                <h5 style="text-align: center;"><font-awesome-icon :icon="user-tie" size="lg"/> Owner: {{ recipe.recipe_owner }}</h5>
-                <h5 style="text-align: center;"><font-awesome-icon :icon="glass-cheers" size="lg"/> When Served: {{ recipe.when_served }}</h5>
+                <h4 style="text-align: center;"><font-awesome-icon :icon="['fas', 'user-tie']" size="lg"/> Owner: {{ recipe.recipe_owner }}</h4>
+                <h4 style="text-align: center;"><font-awesome-icon :icon="['fas', 'glass-cheers']" size="lg"/> When Served: {{ recipe.when_served }}</h4>
             </b-card-body>
           </b-col>
         </b-row>
@@ -88,7 +88,7 @@ h1 {
   font-family: 'Palanquin Dark';
   text-align: center;
 }
-img {
+#full-recipe img {
   border: 5px solid #333333;
   -webkit-box-shadow: 7px 8px 14px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: 7px 8px 14px -2px rgba(0,0,0,0.75);

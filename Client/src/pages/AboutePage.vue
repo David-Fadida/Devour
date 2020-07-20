@@ -6,7 +6,7 @@
       <h1>DEV <font-awesome-icon icon="cookie-bite" size="md"/> UR</h1>
       <br>
       <div style="width: 50%; margin-left: 25%;">
-        <h3 >We are 2 students from BGU university,
+        <h3 >We are students from BGU University,
            finishing our third year for Software and Information Systems Engineering.</h3>
       </div>
     </div>
@@ -25,7 +25,7 @@
       </div>
       <div>
         <div class="avatar-card">
-          <img src="../assets/Eitan.jpg" alt="John" />
+          <img src="../assets/David.jpg" alt="John" />
           <div class="container">
             <h2>David Fadida</h2>
             <h3>Developer</h3>
@@ -35,22 +35,19 @@
         </div>
       </div>
     </div>
-    <br />
+    <br><br>
     <div id="extraProjects" style="text-align:center">
       <h3>PROJECTS</h3>
-      <h5>
-        <a
-          href="https://sise-web-development-environments.github.io/assignment2-eitan-and-david"
-        >Pacman</a>
-      </h5>
-      <h5>
-        <a href="https://sise-web-development-environments.github.io/313125353/">Eitan's Land Page</a>
-      </h5>
-      <h5>
-        <a
-          href="https://sise-web-development-environments.github.io/assignment1-David-Fadida/"
-        >David's Land Page</a>
-      </h5>
+      <h3>
+        <a href="https://sise-web-development-environments.github.io/assignment2-eitan-and-david"
+        > Pacman </a>
+         <span class="seperator"></span> 
+        <a href="https://sise-web-development-environments.github.io/313125353/"
+        > Eitan </a>
+         <span class="seperator"></span>  
+        <a href="https://sise-web-development-environments.github.io/assignment1-David-Fadida/"
+        > David </a>
+      </h3>
     </div>
   </div>
 </template>
@@ -60,6 +57,12 @@ export default {};
 </script>
 
 <style>
+#about-page .seperator {
+  border-left: 2px solid #333333;
+  margin: 10px 30px;
+  font-size: 80%;
+}
+
 #about-page {
   font-family: 'Palanquin Dark';
 }

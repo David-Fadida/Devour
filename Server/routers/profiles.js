@@ -70,7 +70,6 @@ router.get("/favorites", async (req, res, next) => {
       favorites.forEach(row => {
         ids.push(row.recepie_Id);
       })
-      console.log(ids);
       let last_response = await getBulkRecipes(ids);
       let data = await preview.recipe_preview(req, last_response.data);
       res.status(200).send({data: data});

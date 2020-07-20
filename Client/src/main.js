@@ -88,6 +88,7 @@ const shared_data = {
     localStorage.removeItem("username");
     localStorage.removeItem("lastSearchByUser");
     localStorage.removeItem("lastSearchFormByUser");
+    localStorage.removeItem("recipe_title");
     this.username = undefined;
   },
   lastSearchByUser: localStorage.lastSearchByUser,

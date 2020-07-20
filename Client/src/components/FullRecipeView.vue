@@ -115,7 +115,7 @@ h1 {
   font-family: 'Palanquin Dark';
   text-align: center;
 }
-img {
+#full-recipe img {
   border: 5px solid #333333;
   -webkit-box-shadow: 7px 8px 14px -2px rgba(0,0,0,0.75);
   -moz-box-shadow: 7px 8px 14px -2px rgba(0,0,0,0.75);

@@ -64,7 +64,6 @@ async function recipe_preview(req, response) {
     data.forEach(recipe => recipe.favorite = false);
     data.forEach(recipe => recipe.visited = false);
   }  
-  console.log(data)
   return data;
 }
 
@@ -81,7 +80,6 @@ async function family_preview(response) {
       when_served: when_served,
     };
   });
-  console.log(data)
   return data;
 }
 
