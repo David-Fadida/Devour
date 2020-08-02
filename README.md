@@ -1,3 +1,8 @@
-# Assignment-3.3
+# Devour - Recipes Web App
 
-## Last Part Of Our Project
+## Server
+### Node JS
+### Azure MySQL DB
+
+## Client
+### Vue JS application
